@@ -7,17 +7,9 @@ export default function Header() {
         <NavLink to="/">Router Mission Blog</NavLink>
       </h1>
       <nav>
-        <ul>
-          <li>
-            <NavLink to="/">Home</NavLink>
-          </li>
-          <li>
-            <NavLink to="/posts">posts</NavLink>
-          </li>
-          <li>
-            <NavLink to="/write">write</NavLink>
-          </li>
-        </ul>
+        <NavLink to="/">Home</NavLink>
+        <NavLink to="/posts">Posts</NavLink>
+        <NavLink to="/posts/new">Write</NavLink>
       </nav>
     </>
   );
