@@ -15,7 +15,7 @@ export default function Home({ posts }) {
             return (
               <li key={post.id}>
                 <Link to={`posts/${post.id}`}>{post.title}</Link>
-                <small>{post.createdAt}</small>
+                <small>&#40;{post.createdAt}&#41;</small>
               </li>
             );
           })}

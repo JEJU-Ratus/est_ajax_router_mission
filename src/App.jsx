@@ -4,13 +4,15 @@ import Home from "./pages/Home";
 import Posts from "./pages/Posts";
 import { useEffect, useState } from "react";
 import Layout from "./components/Layout";
+import PostDetail from "./pages/PostDetail";
+import PostEdit from "./pages/PostEdit";
 // import PostNew from "./pages/PostNew";
 // import Header from "./components/Header";
 
 function App() {
   // fetch 조회 완료 유무 : loaded, fetch data 저장 : posts
   const [loaded, setLoaded] = useState(false);
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState(null);
 
   useEffect(() => {
     async function postData() {
@@ -35,10 +37,9 @@ function App() {
         <Route path="/" element={<Layout loaded={loaded} />}>
           <Route index element={<Home posts={posts} />} />
           <Route path="posts" element={<Posts posts={posts} />} />
-          {/* <Route
-          path="posts/:id"
-          element={<PostDetail posts={} onDelete={}/>}
-        /> */}
+          <Route path="posts/:id" element={<PostDetail posts={posts} />} />
+          <Route path="posts/:id/edit" element={<PostEdit />} />
+
           {/* <Route path="*" element={<NotFound />} /> */}
         </Route>
       </Routes>
