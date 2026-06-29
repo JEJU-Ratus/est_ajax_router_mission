@@ -12,25 +12,31 @@ import PostEdit from "./pages/PostEdit";
 function App() {
   // fetch 조회 완료 유무 : loaded, fetch data 저장 : posts
   const [loaded, setLoaded] = useState(false);
-  const [posts, setPosts] = useState(null);
+  const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    async function postData() {
+    let alive = true; // 상품조회 시작.. 일중
+    const controller = new AbortController();
+    async function fetchData() {
       try {
-        const res = await fetch("./data/blog.json");
+        const res = await fetch("/data/blog.json", { signal: controller.signal });
         if (!res.ok) throw new Error("로딩에 실패했습니다.");
         const data = await res.json();
-        setPosts(data);
-      } catch (error) {
-        console.log(error);
+        if (alive) setPosts(data);
+        if (alive) setLoaded(true);
+      } catch (e) {
+        console.error(e);
+        if (alive) setPosts([]); //에러시 목록 비움
       } finally {
-        setLoaded(true);
+        if (alive) setLoaded(true);
       }
     }
+    fetchData();
 
-    postData();
+    return () => {
+      controller.abort();
+    }; //정리함수
   }, []);
-
   return (
     <>
       <Routes>
@@ -38,7 +44,7 @@ function App() {
           <Route index element={<Home posts={posts} />} />
           <Route path="posts" element={<Posts posts={posts} />} />
           <Route path="posts/:id" element={<PostDetail posts={posts} />} />
-          <Route path="posts/:id/edit" element={<PostEdit />} />
+          <Route path="posts/:id/edit" element={<PostEdit posts={posts} />} />
 
           {/* <Route path="*" element={<NotFound />} /> */}
         </Route>

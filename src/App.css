@@ -1,0 +1,9 @@
+#root > div {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.inputTitle {
+  width: 100%;
+}
