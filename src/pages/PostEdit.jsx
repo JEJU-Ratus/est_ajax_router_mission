@@ -8,7 +8,7 @@ export default function PostEdit({ posts }) {
     <section>
       <h2>글 수정</h2>
       <div>
-        <input type="text" placeholder="제목" value={_post.title} className="inputTitle" onChange={} />
+        <input type="text" placeholder="제목" value={_post.title} className="inputTitle" />
       </div>
       <div>{/* <textarea name="" id=""></textarea> */}</div>
     </section>

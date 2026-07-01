@@ -15,20 +15,19 @@ function App() {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    let alive = true; // 상품조회 시작.. 일중
+    // let alive = true; // 상품조회 시작.. 일중
     const controller = new AbortController();
     async function fetchData() {
       try {
         const res = await fetch("/data/blog.json", { signal: controller.signal });
         if (!res.ok) throw new Error("로딩에 실패했습니다.");
         const data = await res.json();
-        if (alive) setPosts(data);
-        if (alive) setLoaded(true);
+        setPosts(data);
       } catch (e) {
         console.error(e);
-        if (alive) setPosts([]); //에러시 목록 비움
+        setPosts([]); //에러시 목록 비움
       } finally {
-        if (alive) setLoaded(true);
+        setLoaded(true);
       }
     }
     fetchData();
