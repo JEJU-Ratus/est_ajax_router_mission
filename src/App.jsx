@@ -4,8 +4,8 @@ import Home from "./pages/Home";
 import Posts from "./pages/Posts";
 import { useEffect, useState } from "react";
 import Layout from "./components/Layout";
-import PostDetail from "./pages/PostDetail";
-import PostEdit from "./pages/PostEdit";
+// import PostDetail from "./pages/PostDetail";
+// import PostEdit from "./pages/PostEdit";
 // import PostNew from "./pages/PostNew";
 // import Header from "./components/Header";
 
@@ -42,8 +42,8 @@ function App() {
         <Route path="/" element={<Layout loaded={loaded} />}>
           <Route index element={<Home posts={posts} />} />
           <Route path="posts" element={<Posts posts={posts} />} />
-          <Route path="posts/:id" element={<PostDetail posts={posts} />} />
-          <Route path="posts/:id/edit" element={<PostEdit posts={posts} />} />
+          {/* <Route path="posts/:id" element={<PostDetail posts={posts} />} />
+          <Route path="posts/:id/edit" element={<PostEdit posts={posts} />} /> */}
 
           {/* <Route path="*" element={<NotFound />} /> */}
         </Route>
