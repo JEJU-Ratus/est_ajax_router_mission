@@ -14,7 +14,7 @@ export default function Header() {
           Posts
         </NavLink>
         <NavLink
-          to="/posts/new"
+          to="/post/new"
           className={({ isActive }) => (isActive ? styles.active : undefined)}
         >
           Write
