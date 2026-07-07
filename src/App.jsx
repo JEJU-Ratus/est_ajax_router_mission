@@ -5,8 +5,8 @@ import Posts from "./pages/Posts";
 import { useEffect, useState } from "react";
 import Layout from "./components/Layout";
 import PostDetail from "./pages/PostDetail";
+import NotFound from "./pages/NotFound";
 // import PostDetail from "./pages/PostDetail";
-// import PostEdit from "./pages/PostEdit";
 // import PostNew from "./pages/PostNew";
 // import Header from "./components/Header";
 
@@ -37,16 +37,18 @@ function App() {
       controller.abort();
     }; //정리함수
   }, []);
+  const onDelete = _id => {
+    setPosts(prev => prev.filter(post => post.id !== _id));
+  };
   return (
     <>
       <Routes>
         <Route path="/" element={<Layout loaded={loaded} />}>
           <Route index element={<Home posts={posts} />} />
           <Route path="posts" element={<Posts posts={posts} />} />
-          <Route path="post/:id" element={<PostDetail posts={posts} />} />
-          {/*<Route path="posts/:id/edit" element={<PostEdit posts={posts} />} /> */}
+          <Route path="post/:id" element={<PostDetail posts={posts} onDelete={onDelete} />} />
 
-          {/* <Route path="*" element={<NotFound />} /> */}
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
     </>
