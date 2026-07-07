@@ -19,7 +19,9 @@ function App() {
     const controller = new AbortController();
     async function fetchData() {
       try {
-        const res = await fetch("/data/blog.json", { signal: controller.signal });
+        const res = await fetch(`${import.meta.env.BASE_URL}/data/blog.json`, {
+          signal: controller.signal,
+        });
         if (!res.ok) throw new Error("로딩에 실패했습니다.");
         const data = await res.json();
         setPosts(data);

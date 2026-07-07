@@ -13,9 +13,11 @@ export default function PostEdit({ posts, onUpdate }) {
 
   useEffect(() => {
     if (!_post) return;
+    // eslint-disable-next-line
     setTitle(_post.title);
     setContent(_post.content);
   }, [_post]);
+
   if (!_post) {
     return (
       <>
